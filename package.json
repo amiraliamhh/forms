@@ -1,0 +1,65 @@
+{
+  "name": "forms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:nowatch": "tsc --emitDeclarationOnly && babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline --watch",
+    "test:coverage": "jest --collectCoverage",
+    "start": "concurrently \"npm run copy-non-ts-files\" \"npm run build\" \"nodemon dist/index.js\"",
+    "start:dev": "nodemon dist/start.js",
+    "copy-non-ts-files": "copyfiles -u 1 src/**/*.sql src/**/*.js src/**/*.key dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amiraliamhh/forms.git"
+  },
+  "author": "amirali ameri (amiraliamhh@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amiraliamhh/forms/issues"
+  },
+  "homepage": "https://github.com/amiraliamhh/forms#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-stage-3": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.4.5",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.0",
+    "@types/jest": "^24.0.13",
+    "@types/jsonwebtoken": "^8.3.2",
+    "@types/pg": "^7.4.14",
+    "concurrently": "^4.1.1",
+    "copyfiles": "^2.1.1",
+    "husky": "^2.3.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.11.0"
+  }
+}
