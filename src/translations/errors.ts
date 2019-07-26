@@ -18,5 +18,13 @@ export default {
     wrongEmailFormat: {
         fa: 'فرمت ایمیل وارد شده صحیح نمی‌باشد.',
         en: 'The email you entered is not correct.'
+    },
+    formNameNotProvided: {
+        fa: 'فرم باید شامل نام باشد.',
+        en: 'Form must have a name.'
+    },
+    expectedNumber: {
+        fa: 'متغیر باید از جنس عدد باشد.',
+        en: 'Expected number.'
     }
 }

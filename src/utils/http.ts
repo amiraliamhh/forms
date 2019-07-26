@@ -4,6 +4,12 @@ import {
 import { IStandardResponse } from "../types";
 import { logError } from './log';
 
+export interface IGeneratedStandardResponse {
+    std: boolean
+    status: number
+    response: IStandardResponse
+}
+
 export function genStandardResponse(data: any, status: number, errored: boolean=false) {
     return {
         // other parts will check for this property and if it's present, assume that response
@@ -35,6 +41,6 @@ export function usualErrorHandler(res: Response, err: any) {
         return
     }
 
-    const response = standardResponse(err, true)
+    const response = standardResponse(err.message, true)
     res.status(500).json(response)
 }

@@ -1,21 +1,3 @@
-DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'qtype') THEN
-        -- qtype: question types
-        CREATE TYPE qtype AS ENUM (
-            'multichoice'
-        );
-    END IF;
-END $$;
-
-DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'question') THEN
-        CREATE TYPE question AS (
-            question_type qtype,
-            qid INT
-        );
-    END IF;
-END $$;
-
 CREATE TABLE IF NOT EXISTS users (
     "id" serial PRIMARY KEY,
     first_name VARCHAR (25),
@@ -29,6 +11,24 @@ CREATE TABLE IF NOT EXISTS forms (
     "id" serial PRIMARY KEY,
     form_name VARCHAR (100) NOT NULL,
     "owner" serial REFERENCES users("id"),
-    questions question ARRAY [0],
-    is_active BOOL
+    questions json,
+    is_active BOOL,
+    version INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS multichoice (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    choices VARCHAR ARRAY [0] NOT NULL,
+    supports_other BOOL,
+    other VARCHAR,
+    is_optional BOOL
+);
+
+CREATE TABLE IF NOT EXISTS answers (
+    "id" serial PRIMARY KEY,
+    form serial REFERENCES forms("id") NOT NULL,
+    answers json NOT NULL,
+    respondent serial REFERENCES users("id"),
+    form_version INTEGER NOT NULL
 );

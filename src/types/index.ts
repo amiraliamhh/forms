@@ -1,3 +1,5 @@
+import { IMultichoice } from "../models/questions/multichoice";
+
 export type IQType = 'multichoice'
 
 export interface IQuestion {
@@ -12,4 +14,9 @@ export interface IResponseGlobalOptions {
 export interface IStandardResponse {
     error_msg: string|null
     data: any
+}
+
+export interface IQuestionBody {
+    question_type: IQType
+    body: IMultichoice
 }

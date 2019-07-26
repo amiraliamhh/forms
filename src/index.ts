@@ -9,7 +9,7 @@ import router from './endpoints'
 const app = express()
 
 app.use(bodyParser.json())
-app.use(bodyParser({ extended: true }))
+
 app.use('/api', router)
 
 const PORT = process.env.PORT || 3000
