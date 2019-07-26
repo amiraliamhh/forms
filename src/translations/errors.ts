@@ -26,5 +26,9 @@ export default {
     expectedNumber: {
         fa: 'متغیر باید از جنس عدد باشد.',
         en: 'Expected number.'
+    },
+    passwordsNotMatching: {
+        fa: 'رمزعبور وارد شده صحیح نمی‌باشد.',
+        en: 'The password you entered is not correct.'
     }
 }

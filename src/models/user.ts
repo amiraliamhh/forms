@@ -2,7 +2,7 @@ import { PoolClient, QueryResult } from "pg";
 import { genSalt, hash } from 'bcryptjs'
 
 import { IResponseGlobalOptions } from "../types";
-import { validateEmail, validatePhoneNumber, validatePassword } from "../utils";
+import { validateEmail, validatePhoneNumber, validatePassword, logError } from "../utils";
 
 interface IUser {
     id: number
@@ -48,6 +48,20 @@ class User {
             return dbResponse
 
         } catch (err) {
+            throw new Error(err)
+        }
+    }
+
+    public async findOneWithEmail(email: string) {
+        try {
+            const dbResponse = await this.pool.query(`
+                SELECT email, password FROM users WHERE email=$1;
+            `, [email])
+    
+            return dbResponse.rows[0]
+
+        } catch (err) {
+            logError(err)
             throw new Error(err)
         }
     }
