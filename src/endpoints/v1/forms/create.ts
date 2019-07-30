@@ -8,7 +8,9 @@ import { PoolClient } from 'pg';
 import { getClient } from '../../../connection-pool';
 import { IQuestionBody, IQuestion } from '../../../types';
 import {
-    Multichoice
+    Multichoice,
+    Simpletext,
+    Yesorno,
 } from '../../../models/questions'
 import { IQuestionCreator } from '../../../types/models';
 import { errorsTrs } from '../../../translations';
@@ -25,6 +27,8 @@ interface IExpectedRequestBody {
 function initiateQuestionInstances(client: PoolClient): { [key: string]: IQuestionCreator } {
     return {
         multichoice: new Multichoice(client),
+        simpletext: new Simpletext(client),
+        yesorno: new Yesorno(client),
     }
 }
 

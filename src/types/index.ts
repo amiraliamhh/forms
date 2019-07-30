@@ -1,6 +1,9 @@
 import { IMultichoice } from "../models/questions/multichoice";
+import { ISimpletext } from "../models/questions/simpletext";
 
 export type IQType = 'multichoice'
+|'simpletext'
+|'yesorno'
 
 export interface IQuestion {
     question_type: IQType
@@ -18,5 +21,5 @@ export interface IStandardResponse {
 
 export interface IQuestionBody {
     question_type: IQType
-    body: IMultichoice
+    body: IMultichoice|ISimpletext
 }

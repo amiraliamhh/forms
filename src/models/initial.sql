@@ -25,6 +25,18 @@ CREATE TABLE IF NOT EXISTS multichoice (
     is_optional BOOL
 );
 
+CREATE TABLE IF NOT EXISTS simpletext (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    is_optional BOOL
+);
+
+CREATE TABLE IF NOT EXISTS yesorno (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    is_optional BOOL
+);
+
 CREATE TABLE IF NOT EXISTS answers (
     "id" serial PRIMARY KEY,
     form serial REFERENCES forms("id") NOT NULL,
