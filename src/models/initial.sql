@@ -37,6 +37,27 @@ CREATE TABLE IF NOT EXISTS yesorno (
     is_optional BOOL
 );
 
+CREATE TABLE IF NOT EXISTS dateandtime (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    is_optional BOOL
+);
+
+CREATE TABLE IF NOT EXISTS counterq (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    max_count INTEGER,
+    is_optional BOOL
+);
+
+CREATE TABLE IF NOT EXISTS numberspan (
+    "id" serial PRIMARY KEY,
+    question VARCHAR NOT NULL,
+    max_num FLOAT(2) NOT NULL,
+    min_num FLOAT(2) NOT NULL,
+    is_optional BOOL
+);
+
 CREATE TABLE IF NOT EXISTS answers (
     "id" serial PRIMARY KEY,
     form serial REFERENCES forms("id") NOT NULL,

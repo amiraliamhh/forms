@@ -11,6 +11,9 @@ import {
     Multichoice,
     Simpletext,
     Yesorno,
+    Dateandtime,
+    Counterq,
+    Numberspan,
 } from '../../../models/questions'
 import { IQuestionCreator } from '../../../types/models';
 import { errorsTrs } from '../../../translations';
@@ -29,6 +32,9 @@ function initiateQuestionInstances(client: PoolClient): { [key: string]: IQuesti
         multichoice: new Multichoice(client),
         simpletext: new Simpletext(client),
         yesorno: new Yesorno(client),
+        dateandtime: new Dateandtime(client),
+        counterq: new Counterq(client),
+        numberspan: new Numberspan(client),
     }
 }
 

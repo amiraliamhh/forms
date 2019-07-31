@@ -1,3 +1,6 @@
 export { default as Multichoice } from './multichoice'
 export { default as Simpletext } from './simpletext'
 export { default as Yesorno } from './yesorno'
+export { default as Dateandtime } from './dateandtime'
+export { default as Counterq } from './counterq'
+export { default as Numberspan } from './numberspan'

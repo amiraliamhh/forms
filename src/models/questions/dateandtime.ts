@@ -1,36 +1,35 @@
 import { PoolClient } from "pg";
 
-export interface IYesorno {
+export interface IDateandtime {
     id: number
     question: string
-    is_optional?: boolean
+    is_optional: boolean
 }
 
-class Yesorno {
+class Dateandtime {
     constructor(private pool: PoolClient) {
 
     }
 
-    public async create(yesornoQuestion: IYesorno) {
+    public async create(dateandtimeQuestion: IDateandtime) {
         try {
             const {
                 question,
                 is_optional=true
-            } = yesornoQuestion
+            } = dateandtimeQuestion
 
             const dbResponse = await this.pool.query(`
-                INSERT INTO yesorno (
+                INSERT INTO dateandtime (
                     question,
                     is_optional
                 ) VALUES ($1, $2) RETURNING *;
             `, [question, is_optional])
 
             return dbResponse.rows[0]
-
         } catch (err) {
             throw new Error(err)
         }
     }
 }
 
-export default Yesorno
+export default Dateandtime
